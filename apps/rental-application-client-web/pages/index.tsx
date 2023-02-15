@@ -1,7 +1,7 @@
 import styles from './index.module.scss';
 import { useSelector } from 'react-redux'
 import { RootState } from '@rch/store';
-
+import Alert from '@mui/material/Alert';
 
 export function Index() {
   const test = useSelector((store: RootState)=>store.counter.value)
@@ -13,7 +13,7 @@ export function Index() {
    */
   return (
     <div className={styles.page}>
-        <h1>value of count is {test}</h1>
+        <Alert severity="error">{test}</Alert>
     </div>
   );
 }
