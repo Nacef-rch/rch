@@ -2,7 +2,9 @@
   "name": "rch",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky install"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -19,6 +21,10 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@commitlint/cli": "^17.4.3",
+    "@commitlint/config-conventional": "^17.4.3",
+    "@commitlint/config-nx-scopes": "^17.4.3",
+    "@commitlint/cz-commitlint": "^17.4.2",
     "@nrwl/cypress": "15.7.0",
     "@nrwl/eslint-plugin-nx": "15.7.0",
     "@nrwl/jest": "15.7.0",
@@ -41,6 +47,7 @@
     "@vitest/ui": "^0.25.8",
     "autoprefixer": "^10.4.13",
     "babel-jest": "28.1.1",
+    "commitizen": "^4.3.0",
     "cypress": "^12.2.0",
     "eslint": "~8.15.0",
     "eslint-config-next": "13.1.1",
@@ -50,9 +57,11 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
+    "husky": "^8.0.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "jsdom": "~20.0.3",
+    "lint-staged": "^13.1.2",
     "nx": "15.7.0",
     "postcss": "^8.4.21",
     "prettier": "^2.6.2",
