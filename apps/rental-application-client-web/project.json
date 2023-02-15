@@ -10,7 +10,8 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/rental-application-client-web",
-        "outputPath": "dist/apps/rental-application-client-web"
+        "outputPath": "dist/apps/rental-application-client-web",
+        "postcssConfig": "apps/rental-application-client-web/postcss.config.js"
       },
       "configurations": {
         "development": {

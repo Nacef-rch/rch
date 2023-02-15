@@ -5,15 +5,10 @@ import Alert from '@mui/material/Alert';
 
 export function Index() {
   const test = useSelector((store: RootState)=>store.counter.value)
-  console.log(test);
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./index.scss file.
-   */
   return (
     <div className={styles.page}>
         <Alert severity="error">{test}</Alert>
+        <h1 className="bg-indigo-500 p-2 font-mono text-blue-600">TEST</h1>
     </div>
   );
 }
