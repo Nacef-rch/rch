@@ -4,7 +4,6 @@ on:
     branches:
       - develop
   pull_request:
-
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -12,6 +11,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          main-branch-name: 'develop'
       - uses: nrwl/nx-set-shas@v3
       - run: npm ci
       - run: npx nx format:check
