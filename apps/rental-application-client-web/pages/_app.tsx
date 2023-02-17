@@ -23,6 +23,7 @@ function CustomApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
+        <title>Rental APP</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <Provider store={store}>
