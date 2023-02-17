@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@rch/pocketbase": ["libs/pocketbase/src/index.ts"],
-      "@rch/store": ["libs/store/src/index.ts"]
+      "@rch/store": ["libs/store/src/index.ts"],
+      "@rch/ui-web": ["libs/ui-web/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
