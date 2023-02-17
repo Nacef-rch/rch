@@ -1,7 +1,7 @@
 import React from 'react';
 export function CardContainer() {
   return (
-    <div className="shadow bg-white rounded-lg">
+    <div className="shadow-lg bg-white rounded-lg p-8">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit maiores, quam praesentium
       ratione debitis laboriosam architecto maxime asperiores repellendus vitae, aliquam expedita
       qui quo. Dignissimos delectus natus tenetur repellat nihil doloremque molestias.
