@@ -5,7 +5,7 @@ import { AppProps } from 'next/app';
 type Props = {
   children: string | JSX.Element | JSX.Element[];
 };
-
+//url="https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=QwxPBTQsks2I0OcxTnXEOsDF8OcmzZcGb25DPGos05ieNhYAmkztvdfxCOzGcHGr"
 export function Map(props: Props) {
   const { children } = props;
   return (

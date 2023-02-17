@@ -3,7 +3,7 @@ import { RootState } from '@rch/store';
 import Alert from '@mui/material/Alert';
 import { Box, Button, Grid } from '@mui/material';
 import { pb, currentUser } from '@rch/pocketbase';
-import { SideBar, CardContainer } from '@rch/ui-web';
+import { SideBar, CardContainer } from '@rch/layout';
 
 import { Marker, MapContainer, TileLayer, Popup } from 'react-leaflet';
 import { Map } from '@rch/map';
@@ -14,7 +14,6 @@ export function Index() {
   const login = async (): Promise<void> => {
     await pb.collection('users').authWithPassword('nacef', '97084602');
   };
-  console.log(anonymousUserSideBar)
   return (
     <Box>
       <Map>

@@ -1,3 +1,4 @@
+import { Icon } from '@rch/shared';
 import React from 'react';
 export function CardContainer() {
   return (
@@ -7,6 +8,8 @@ export function CardContainer() {
       qui quo. Dignissimos delectus natus tenetur repellat nihil doloremque molestias.
       Reprehenderit, nostrum modi totam molestias quo nemo eveniet nesciunt, soluta aut cum
       voluptatum aspernatur veritatis pariatur provident amet.
+      {/* className="h-6 w-6 text-blue-500" */}
+      <Icon icon='HomeIcon' className="h-6 w-6 text-blue-500" />
     </div>
   );
 }
