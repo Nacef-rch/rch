@@ -7,12 +7,14 @@ import { SideBar, CardContainer } from '@rch/ui-web';
 
 import { Marker, MapContainer, TileLayer, Popup } from 'react-leaflet';
 import { Map } from '@rch/map';
+import { anonymousUserSideBar } from '@rch/core';
 
 export function Index() {
   const test = useSelector((store: RootState) => store.counter.value);
   const login = async (): Promise<void> => {
     await pb.collection('users').authWithPassword('nacef', '97084602');
   };
+  console.log(anonymousUserSideBar)
   return (
     <Box>
       <Map>
