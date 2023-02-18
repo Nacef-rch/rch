@@ -23,7 +23,12 @@ export function SideBar() {
   return (
     <Drawer variant="permanent" open={open}>
       <IconButton>
-        <HomeModernIcon className="h-8 w-8 text-blue-500" />
+        <HomeModernIcon
+          className="h-8 w-8 text-blue-500"
+          onClick={() => {
+            setOpen(cs => !cs);
+          }}
+        />
       </IconButton>
       <List className="pt-14">
         {anonymousUserSideBar.map((item, index) => (
