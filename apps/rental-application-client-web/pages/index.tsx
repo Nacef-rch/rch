@@ -1,13 +1,10 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '@rch/store';
-import Alert from '@mui/material/Alert';
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { pb, currentUser } from '@rch/pocketbase';
 import { SideBar, CardContainer } from '@rch/layout';
-
-import { Marker, MapContainer, TileLayer, Popup } from 'react-leaflet';
 import { Map } from '@rch/map';
-import { anonymousUserSideBar } from '@rch/core';
+
 
 export function Index() {
   const test = useSelector((store: RootState) => store.counter.value);

@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import { Paper } from '@rch/shared';
+import { CustomDropDown } from '@rch/ui-web';
 import CardContainerHeader from './CardContainerHeader';
 
 export function CardContainer() {
@@ -9,8 +10,12 @@ export function CardContainer() {
         {/*Include the first row in the container that contains search, rent/buy... */}
         <CardContainerHeader />
         <Grid item xs={12}>
-          <Paper>
-            
+          <Paper className="flex justify-around p-4">
+            <CustomDropDown/>
+            <CustomDropDown/>
+            <CustomDropDown/>
+            <CustomDropDown/>
+            <CustomDropDown/>
           </Paper>
         </Grid>
       </Grid>
