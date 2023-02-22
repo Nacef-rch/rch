@@ -1,42 +1,50 @@
 import { Grid } from '@mui/material';
-import { Icon, Paper } from '@rch/shared';
+import { Paper } from '@rch/shared';
 import { ElevatedButton, SearchInput } from '@rch/ui-web';
-import {useState} from 'react'
+import { useState } from 'react';
 
+enum PropertyStatus {
+  ALL = 'All',
+  RENT = 'Rent',
+  BUY = 'buy',
+}
 const CardContainerHeader = () => {
-  const [rent, setRent] = useState(false);
+  const [propertyStatus, setPropertyStatus] = useState<PropertyStatus>(PropertyStatus.ALL);
   return (
     <>
-    <Grid item xs={6} md={8}>
-          <Paper className="h-14 min-h-full">
-            <SearchInput variant="outlined" noBorder fullWidth />
-          </Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className="flex justify-between h-14 min-h-full">
-            <ElevatedButton
-              text="Rent"
-              clicked={rent}
-              onClick={() => {
-                setRent(cs => !cs);
-              }}
-            />
-            <ElevatedButton
-              text="Buy"
-              clicked={!rent}
-              onClick={() => {
-                setRent(cs => !cs);
-              }}
-            />
-          </Paper>
-        </Grid>
-        <Grid item xs={1}>
-          <Paper className='flex items-center justify-center h-14 min-h-full'>
-            <Icon icon="Squares2X2Icon" className="h-7 w-7"/>
-          </Paper>
-        </Grid>
+      <Grid item xs={6} md={8}>
+        <Paper className="h-14 min-h-full">
+          <SearchInput variant="outlined" noBorder fullWidth />
+        </Paper>
+      </Grid>
+      <Grid item xs={4}>
+        <Paper className="flex justify-between h-14 min-h-full">
+          <ElevatedButton
+            text="Rent"
+            clicked={propertyStatus === PropertyStatus.RENT}
+            onClick={() => {
+              setPropertyStatus(PropertyStatus.RENT);
+            }}
+          />
+          <ElevatedButton
+            text="Buy"
+            clicked={propertyStatus === PropertyStatus.BUY}
+            onClick={() => {
+              setPropertyStatus(PropertyStatus.BUY);
+            }}
+          />
+          <ElevatedButton
+            text="All"
+            clicked={propertyStatus === PropertyStatus.ALL}
+            onClick={() => {
+              setPropertyStatus(PropertyStatus.ALL);
+            }}
+          />
+        </Paper>
+      </Grid>
+      
     </>
-  )
-}
+  );
+};
 
-export default CardContainerHeader
+export default CardContainerHeader;

@@ -1,61 +1,83 @@
 import * as React from 'react';
 import { Theme, useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { ListItemButton, ListItemText, Slider } from '@mui/material';
-
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
+import { ChildrenType } from '@rch/types';
+import { InputLabel, MenuItem } from '@mui/material';
+import { Icon, Paper } from '@rch/shared';
 
 
-export function CustomDropDown() {
-  const [personName, setPersonName] = React.useState<string[]>([]);
+const selectStyle = {
+  '& .MuiSelect-select': {
+    paddingRight: '5px !important',
+    width:'auto',
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+  },
+  
+}
+interface DropDownProps {
+  children?: ChildrenType;
+  placeholder: string;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  className?: string;
+  //setValue: (value: string) => void;
+  // onChange: (event: SelectChangeEvent<typeof personName>) => void
+}
+
+export function CustomDropDown({
+  children,
+  placeholder,
+  value,
+  className,
+  setValue,
+}: DropDownProps) {
+  const [selected, setSelected] = React.useState(false);
+  const [open,setOpen] = React.useState(false)
+  const handleChange = (event: SelectChangeEvent<any>) => {
+    const { target } = event;
+    setValue(target.value);
   };
-
+//WORK ON COLOR VARIABLES
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 200}}>
+    <Paper className={`rounded-lg ${selected && 'shadow-lg'}`} color={selected ? '#456AF2' : '#F9F9F9'}>
+      <FormControl fullWidth>
+        {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
         <Select
-          multiple
+          sx={selectStyle}
+          
+          labelId="demo-simple-select-label"
+          label="Age"
+          className={`flex justify-center items-center ${className}`}
+          onOpen={()=>setOpen(true)}
+          onClose={()=>setOpen(false)}
+          IconComponent = {() => (
+             <Icon icon={open ? 'ChevronDownIcon' : 'ChevronUpIcon'} className="w-5 h-5" color={selected ? 'white' : '#456AF2'}/>
+          )}
+          // multiple
+          renderValue={selected => {
+            if (selected.length === 0) {
+              setSelected(false)
+              return <p>{placeholder}</p>;
+            }
+            setSelected(true);
+            console.log(selected);
+            return <p className={selected ? 'text-blue-50' : 'text-black'}>{`${placeholder} : ${selected}`}</p>;
+            // return selected.join(', ');
+          }}
           displayEmpty
-          value={personName}
-          placeholder='type'
+          value={value}
           onChange={handleChange}
           input={<OutlinedInput />}
         >
-          <Slider
-  aria-label="Small steps"
-  defaultValue={0.00000005}
-  step={0.00000001}
-  marks
-  min={-0.00000005}
-  max={0.0000001}
-  valueLabelDisplay="auto"
-/>
+          {/* {children} */}
+          <MenuItem value={'10'}>Ten</MenuItem>
+          <MenuItem value={'20'}>Twenty</MenuItem>
+          <MenuItem value={'30'}>Thirty</MenuItem>
         </Select>
       </FormControl>
-    </div>
+    </Paper>
   );
 }
 export default CustomDropDown;
