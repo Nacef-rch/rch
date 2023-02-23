@@ -1,1 +1,1 @@
-
+export * from './containers/PropertyCard';
