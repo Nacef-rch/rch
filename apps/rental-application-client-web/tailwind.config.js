@@ -4,6 +4,7 @@ const { join } = require('path');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
+  //important: '#__next',
   content: [
     join(
       __dirname,
@@ -15,4 +16,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  // corePlugins: {
+  // preflight: false,
+  // },
 };

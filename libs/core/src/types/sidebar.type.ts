@@ -1,5 +1,7 @@
+import { HeroIcon } from "./heroIcon.type";
+
 export type SideBarItem = {
     title: string;
-    icon: string;
+    icon: HeroIcon;
     url?:string;
   };

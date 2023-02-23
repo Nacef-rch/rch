@@ -16,11 +16,13 @@
     "baseUrl": ".",
     "paths": {
       "@rch/core": ["libs/core/src/index.ts"],
+      "@rch/layout": ["libs/layout/src/index.ts"],
       "@rch/map": ["libs/map/src/index.ts"],
       "@rch/pocketbase": ["libs/pocketbase/src/index.ts"],
+      "@rch/shared": ["libs/shared/src/index.ts"],
       "@rch/store": ["libs/store/src/index.ts"],
-      "@rch/ui-web": ["libs/ui-web/src/index.ts"],
-      "@rch/types": ["libs/core/src/types/index.ts"]
+      "@rch/types": ["libs/core/src/types/index.ts"],
+      "@rch/features": ["libs/features/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

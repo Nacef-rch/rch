@@ -1,11 +1,11 @@
 import styles from './map.module.scss';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import { AppProps } from 'next/app';
+import { ChildrenType } from '@rch/types';
 
 type Props = {
-  children: string | JSX.Element | JSX.Element[];
+  children: ChildrenType
 };
-
+//url="https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=QwxPBTQsks2I0OcxTnXEOsDF8OcmzZcGb25DPGos05ieNhYAmkztvdfxCOzGcHGr"
 export function Map(props: Props) {
   const { children } = props;
   return (
@@ -21,7 +21,7 @@ export function Map(props: Props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
       </MapContainer>
-      <div className="z-50 flex relative">
+      <div className="z-50 flex relative" style={{height:'100vh'}}>
         {children}
       </div>
     </>
