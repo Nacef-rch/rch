@@ -1,75 +1,92 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { IconButton } from '@mui/material';
 import { Icon } from '../Icon';
 
-export const ImageSlider = () => {
-  const slides = [
-    {
-      url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80',
-    },
+interface ImageSliderProps {
+  slides: string[];
+  title: string;
+  rounded : "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" ;
+  className?:string;
+  maxWidth?: number;
+  duration?: number;
+  autoSlide?: boolean;
+  autoSlideInterval?: number;
+}
 
-    {
-      url: 'https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2253&q=80',
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80',
-    },
-  ];
+const prevSlide = (currentIndex: number, slides: string[]) => {
+  const isFirstSlide = currentIndex === 0;
+  return isFirstSlide ? slides.length - 1 : currentIndex - 1;
+};
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+const nextSlide = (currentIndex: number, slides: string[]) => {
+  const isLastSlide = currentIndex === slides.length - 1;
+  return isLastSlide ? 0 : currentIndex + 1;
+};
 
-  const prevSlide = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const nextSlide = () => {
-    const isLastSlide = currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const goToSlide = (slideIndex: any) => {
-    setCurrentIndex(slideIndex);
-  };
+export const ImageSlider = ({
+  slides,
+  title,
+  rounded = "none",
+  className,
+  maxWidth = 1200,
+  duration = 500,
+  autoSlide = false,
+  autoSlideInterval = 3000,
+}: ImageSliderProps) => {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  useEffect(() => {
+    if (!autoSlide) return;
+    const slideInterval = setInterval(() => {
+      setCurrentIndex(nextSlide(currentIndex, slides));
+    }, autoSlideInterval);
+    return () => clearInterval(slideInterval);
+  }, []);
 
   return (
-    <div className="max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group">
+    <div className={`overflow-hidden relative group transition-all ease-out rounded-${rounded} duration-${duration}  ${className}`}>
       <div
-        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-        className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
-      ></div>
-      {/* Left Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <div onClick={prevSlide}>
-          <Icon icon="ChevronLeftIcon" className="h-4 w-4" />
-        </div>
-      </div>
-      {/* Right Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <div onClick={nextSlide}>
-          <Icon icon="ChevronLeftIcon" className="h-4 w-4" />
-        </div>
-      </div>
-      <div className="flex top-4 justify-center py-2">
-        {slides.map((slide, slideIndex) => (
-          <div
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-            className="text-2xl cursor-pointer"
-          >
-            <Icon icon="CircleStackIcon" className="h-4 w-4" />
-          </div>
+        className={`max-w-[${maxWidth}px] flex transition-transform ease-out duration-${duration}`}
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {slides.map((url, index) => (
+          <img key={index} src={url} alt={title} className=" bg-center bg-cover"/>
         ))}
+      </div>
+      <div className="absolute inset-0 flex items-center justify-between p-4 ">
+        <IconButton
+          onClick={() => {
+            setCurrentIndex(prevSlide(currentIndex, slides));
+          }}
+          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white hidden group-hover:block"
+        >
+          <Icon icon="ChevronLeftIcon" className="h-6 w-6" />
+        </IconButton>
+
+        <IconButton
+          onClick={() => {
+            setCurrentIndex(nextSlide(currentIndex, slides));
+          }}
+          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white hidden group-hover:block"
+        >
+          <Icon icon="ChevronRightIcon" className="h-6 w-6" />
+        </IconButton>
+      </div>
+      <div className="absolute bottom-4 right-0 left-0">
+        <div className="flex items-center justify-center gap-2">
+          {slides.map((_, slideIndex) => (
+            <div
+              key={slideIndex}
+              onClick={() => setCurrentIndex(slideIndex)}
+              className={`
+            transition-all w-3 h-3 bg-white rounded-full
+            ${currentIndex === slideIndex ? 'p-2' : 'bg-opacity-50'}
+          `}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default ImageSlider;

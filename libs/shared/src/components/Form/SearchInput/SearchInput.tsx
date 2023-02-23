@@ -1,6 +1,6 @@
 import { InputAdornment, TextField } from '@mui/material';
 import { Icon } from '@rch/shared';
-import { SEARCH_INPUT__PLACE_HOLDER } from '../../constants/searchInput.constant';
+import { SEARCH_INPUT__PLACE_HOLDER } from './constants/searchInput.constant';
 
 interface SearchProps {
   placeHolder?: string;

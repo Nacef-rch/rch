@@ -1,8 +1,15 @@
 import { Grid } from '@mui/material';
-import { Icon, Paper,ImageSlider } from '@rch/shared';
-import { CustomDropDown } from '@rch/ui-web';
+import { Icon, Paper, ImageSlider,CustomDropDown } from '@rch/shared';
 import { useState } from 'react';
 import CardContainerHeader from './CardContainerHeader';
+
+const slides = [
+  'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
+  'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
+  'https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80',
+  'https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2253&q=80',
+  'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80',
+];
 
 export function CardContainer() {
   const [person, setPerson] = useState('');
@@ -95,12 +102,8 @@ export function CardContainer() {
                 </div>
               </div>
             </div>
-            <div className="bg-indigo-30 rounded-lg overflow-hidden flex flex-col">            
-              <img
-                className="object-cover h-48 w-80 rounded-lg"
-                src="https://a0.muscache.com/im/pictures/7402311d-4e05-40ac-9e6d-6c9605745b79.jpg?im_w=960"
-                alt="prod"
-              />
+            <div className="bg-indigo-30 rounded-lg overflow-hidden flex flex-col">
+              <ImageSlider slides={slides} title={'a home that'} className="h-48 w-80" rounded="xl"/>
               <div className="flex justify-between mt-2">
                 <h2 className="font-medium">Cozy Central Apartment</h2>
                 <p className="text-sm">
@@ -132,7 +135,6 @@ export function CardContainer() {
                 </div>
               </div>
             </div>
-            <ImageSlider/>
           </div>
         </Grid>
       </Grid>

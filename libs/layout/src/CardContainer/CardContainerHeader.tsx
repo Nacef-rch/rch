@@ -1,6 +1,5 @@
 import { Grid } from '@mui/material';
-import { Paper } from '@rch/shared';
-import { ElevatedButton, SearchInput } from '@rch/ui-web';
+import { Paper,ElevatedButton, SearchInput } from '@rch/shared';
 import { useState } from 'react';
 
 enum PropertyStatus {

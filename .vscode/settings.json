@@ -1,6 +1,6 @@
 {
     "conventionalCommits.scopes": [
-        "ui-web",
+        "features",
         "core",
         "map"
     ]
