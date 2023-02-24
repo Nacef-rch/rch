@@ -6,7 +6,7 @@ interface ElevatedButtonProps {
   onClick?: () => void;
 }
 
-const STYLE = 'px-11 m-2 font-medium normal-case font-medium hover:bg-white hover:shadow-md';
+const STYLE = 'px-10 m-2 font-medium normal-case font-medium hover:bg-white hover:shadow-md';
 const CLICK_STYLE = 'bg-white shadow';
 
 export const ElevatedButton = ({ text, clicked, onClick }: ElevatedButtonProps) => {

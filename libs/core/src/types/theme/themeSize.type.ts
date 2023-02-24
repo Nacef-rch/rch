@@ -1,0 +1,1 @@
+export type themeSize = 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
