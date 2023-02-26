@@ -17,7 +17,8 @@ export function Index() {
     <Box>
       <Map>
         <SideBar />
-        <Grid container spacing={2} sx={{ flexGrow: 1, p: 3 }}>
+        {/* sx={{ flexGrow: 1, p: 3 }} */}
+        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
           {showCardContainer && (
             <Grid item xs={12} md={7}>
               <CardContainer />
